@@ -53,11 +53,21 @@ kbase需要升级到7.0，或者执行一下代码：
 
 ### 首页
 
-1.数据库列表过滤
+1.数据库列表过滤SingleDBPublishDAO.cs GetDBList方法里添加
+
+	result = result.Where(b => b.DatabaseCode.StartsWith("ZTB")).ToList();
 
 ### 数字资源
 
-1.数字资源过滤
+1.SingleDBPublishDAO.cs与CategoryDAO.cs的GetPublishDBList与GetDatabaseCLSDBType方法里添加一下过滤条件
+
+	result= result.Where(b => b.DatabaseCode.StartsWith("ZTB")).ToList();
+
+### 首页检索条分类里的库
+
+1.UserDBDAO.cs 的GetUnionDB方法里添加
+
+	result = result.Where(b => b.DbCode.StartsWith("ZTB")).ToList();
 
 
 
