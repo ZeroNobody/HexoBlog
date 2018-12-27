@@ -65,9 +65,20 @@ kbase需要升级到7.0，或者执行一下代码：
 
 ### 首页检索条分类里的库
 
-1.UserDBDAO.cs 的GetUnionDB方法里添加
+1.UserDBDAO.cs的GetUnionDB方法里添加
 
 	result = result.Where(b => b.DbCode.StartsWith("ZTB")).ToList();
+
+### 在线提交
+
+1.UserDBDAO.cs的GetSubmitDBList方法里添加
+	
+	result = result.Where(b => b.DbCode.StartsWith("ZTB")).ToList();
+
+### 通过上面的添加的代码，可以看出个性化定制需要将DAO层里的大部分方法进行过滤，在这里我挖了个坑，就是在分页的时候没办法先过滤再分页，一般用户拥有的库数量不超过50个，而定制的一般不超过10个，所以
+
+	IList<SYS_CMS_DATABASE> result= Context.Get<SYS_CMS_DATABASE>(exp.Compile(), pageIndex, 50, out count);
+
 
 
 
